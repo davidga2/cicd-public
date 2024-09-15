@@ -13,7 +13,7 @@ public class CiCdController {
 	public String getName(@PathVariable String name) {
 		return name;
 	}
-	@GetMapping("/get1/{name}")
+	@GetMapping("/return/{name}")
 	public String getName1(@PathVariable String name) {
 		return name;
 	}
