@@ -15,6 +15,6 @@ public class CiCdController {
 	}
 	@GetMapping("/return/{name}")
 	public String getName1(@PathVariable String name) {
-		return name;
+		return "david";
 	}
 }
