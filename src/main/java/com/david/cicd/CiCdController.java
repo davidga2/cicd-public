@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/")
 public class CiCdController {
-
+//
 	@GetMapping("/get/{name}")
 	public String getName(@PathVariable String name) {
 		return name;
