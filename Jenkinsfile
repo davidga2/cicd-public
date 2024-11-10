@@ -30,11 +30,10 @@ pipeline {
         }
         stage("DEPLOY IMAGE TO HUB"){
             steps{
-                withCredentials([string(credentialsId: 'dockerCred', variable: 'dockerCred')]) {
-                    bat 'docker login -u mdavid2 -p ${dockerCred}'
+                    bat 'docker login -u mdavid2 -p dockerDavid2@'
                     bat 'docker tag ci-cd-image:v1 mdavid2/ci-cd-image:v1'
                     bat 'docker push mdavid2/ci-cd-image:v1-${BUILD_NUMBER}'
-                }
+                
         }
     }
         
