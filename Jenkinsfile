@@ -11,7 +11,7 @@ pipeline {
                 checkout scmGit(branches: [[name: 'develop']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/davidga2/cicd-public.git']])
             }
         }
-        
+
         stage("BUILD") {
             steps {
                 script {
@@ -21,11 +21,23 @@ pipeline {
             }
         }
         
-        stage("DEPLOY"){
+        stage("BUILD IMAGE"){
             steps{
-                deploy adapters: [tomcat9(credentialsId: 'name', path: '', url: 'http://localhost:9090/')], contextPath: 'cicdjenkins', war: '**/*.war'
+                script{
+                    bat 'docker build -t ci-cd-image:v1 .'
+                }
             }
         }
+        stage("DEPLOY IMAGE TO HUB"){
+            steps{
+                withCredentials([string(credentialsId: 'dockerCred', variable: 'dockerCred')]) {
+                    bat 'docker login -u mdavid2 -p ${dockerCred}'
+                    bat 'docker tag ci-cd-image:v1 mdavid2/ci-cd-image:v1'
+                    bat 'docker push mdavid2/ci-cd-image:v1'
+                }
+        }
+    }
+        
     }
     post{
         always{

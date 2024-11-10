@@ -12,7 +12,7 @@
 	<groupId>com.david.cicd</groupId>
 	<artifactId>com.david.ci-cd</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>war</packaging>
+	<packaging>jar</packaging>
 	<name>ci-cd</name>
 	<description>Demo project for CI CD</description>
 	<url />
